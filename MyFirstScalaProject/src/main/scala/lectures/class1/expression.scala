@@ -20,6 +20,8 @@ object expression extends App{
   c += b
 
   //Instructions VS Expressions
+  //Instruction -> Do something
+  //Expression -> give something by doing something
   //Everything is Scala is Expression!
   //That means every line will return something. it will either return any values or return unit.
   //Unit is equivalent to void in other languages
@@ -42,4 +44,25 @@ object expression extends App{
       cnt-=1
     }
   println(whileVar.getClass())
+  "Hello World"
+
+  // Code blocks
+  println("Code blocks are expression. Difference is ->")
+  println("It will contains multiple line surrounded by { and }")
+  println("The value of the code block is : The value of the last line in the code block (or surrounded by return ")
+  var isEven = {
+    var a = 5
+    var b = 6
+    println("start here")
+    if(a + b < 35 )
+    {
+      true
+    }
+    else{
+      println("reach here")
+      false
+    }
+
+  }
+  println(isEven)
 }
