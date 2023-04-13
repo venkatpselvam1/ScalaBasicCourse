@@ -59,15 +59,18 @@ object A01_FunctionProgram extends App{
   println(intDoublerWithScalaFunction(2))
   println(strDoublerWithScalaFunction("venkat"))
 
-  println("Synthetic sugar for Function[String, String] is ( (String) -> String ) ")
+  println("Synthetic sugar for Function[String, String] is ( (String) => String ) ")
   var strAdder = new Function2[String, String, String] {
     override def apply(v1: String, v2: String): String = v1 + v2
-  }
+  }g
 
   var strAdderWithSyntheticSugar = new ((String, String) => String) {
     override def apply(v1: String, v2: String): String = v1 + v2
-  }
+  }g
   println(strAdder("venkat", "test"))
   println(strAdderWithSyntheticSugar("venkat", "test"))
   println("ALL SCALA FUNCTIONS ARE OBJECTS")
+
+  println("HIGHER ORDER FUNCTION is some function which takes function as input or return function as output")
+  println("functionChooser(-10)(3) = ( Int => ( Int => Int ) ) :: This is called curried function ")
 }
