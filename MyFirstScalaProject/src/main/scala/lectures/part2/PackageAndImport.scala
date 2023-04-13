@@ -1,6 +1,6 @@
 package lectures.part2
 
-#import lectures.class1.expression
+import lectures.class1.expression
 import lectures._
 import java.util.{Date => jdate}
 import java.sql.{Date => sdate}
