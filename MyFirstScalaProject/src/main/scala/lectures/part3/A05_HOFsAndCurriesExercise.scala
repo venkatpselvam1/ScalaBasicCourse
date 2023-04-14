@@ -18,16 +18,16 @@ object A05_HOFsAndCurriesExercise extends App{
 
     def map[B](function1: (A => B)): VenkatList[B]
 
-    def filter(func: (A => Boolean)): VenkatList[A]
+    def withFilter(func: (A => Boolean)): VenkatList[A]
 
     def flatMap[B](func: (A => VenkatList[B])): VenkatList[B]
 
     def ++[B >: A](list1: VenkatList[B]): VenkatList[B]
 
-    def forEach(func: A => Unit): Unit = {
+    def foreach(func: A => Unit): Unit = {
       if(this != EmptyList){
         func(head)
-        tail.forEach(func)
+        tail.foreach(func)
       }
     }
     def zip[B >: A, C](newList: VenkatList[B] , func: (B, B) => C ): VenkatList[C] = {
@@ -78,7 +78,7 @@ object A05_HOFsAndCurriesExercise extends App{
 
     override def map[B](function1: Nothing => B): VenkatList[B] = EmptyList
 
-    override def filter(func: Nothing => Boolean): VenkatList[Nothing] = EmptyList
+    override def withFilter(func: Nothing => Boolean): VenkatList[Nothing] = EmptyList
 
     override def flatMap[B >: Nothing](func: Nothing => VenkatList[B]): VenkatList[B] = EmptyList
 
@@ -96,9 +96,9 @@ object A05_HOFsAndCurriesExercise extends App{
 
     override def map[B](function1: A => B): VenkatList[B] = new VenkatListImpl[B](function1(value), tailList.map(function1))
 
-    override def filter(func: A => Boolean): VenkatList[A] = {
-      if (func(head)) new VenkatListImpl(head, tailList.filter(func))
-      else tailList.filter(func)
+    override def withFilter(func: A => Boolean): VenkatList[A] = {
+      if (func(head)) new VenkatListImpl(head, tailList.withFilter(func))
+      else tailList.withFilter(func)
     }
 
     override def flatMap[B](func: A => VenkatList[B]): VenkatList[B] = func(head) ++ tailList.flatMap(func)
@@ -108,7 +108,7 @@ object A05_HOFsAndCurriesExercise extends App{
 
   var intList = new VenkatListImpl(4, new VenkatListImpl(3, new VenkatListImpl(2, new VenkatListImpl(1, new VenkatListImpl(0, EmptyList)))))
   println(intList)
-  intList.forEach(x => {
+  intList.foreach(x => {
     var temp = x;
     while(temp >= 0){
       print(temp+", ")
