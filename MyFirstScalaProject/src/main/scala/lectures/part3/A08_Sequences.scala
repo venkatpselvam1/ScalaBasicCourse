@@ -1,5 +1,7 @@
 package lectures.part3
 
+import scala.util.Random
+
 
 object A08_Sequences extends App{
   //Sequence
@@ -43,5 +45,27 @@ object A08_Sequences extends App{
   println(seq2)//
   println("seq2: Seq[Int] = Array(1,2,3,4, 5) is of type ArraySeq. ArraySeq is advanced topic Implicit conversion")
 
+  //Vectors
+  var vector = Vector(1, 2, 3, 4)
+  println(vector)
 
+  //Benchmark vector vs list
+  var maxCapacity = 1_000_000
+  var testTimes = 1_000
+  def getAverage(seq: Seq[Int]) : Double = {
+    var rand = new Random()
+    var times = for{
+      x <- 1 to testTimes
+    } yield {
+      var randValue = rand.nextInt(maxCapacity)
+      var start = System.nanoTime()
+      seq.updated(randValue, randValue)
+      var end = System.nanoTime()
+      end-start
+    }
+    times.sum * 1.0 / times.length
+  }
+
+  println(getAverage( List.fill(maxCapacity)(0) ))
+  println(getAverage( Vector.fill(maxCapacity)(0) ))
 }
