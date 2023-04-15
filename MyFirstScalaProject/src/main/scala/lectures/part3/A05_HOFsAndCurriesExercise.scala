@@ -85,7 +85,7 @@ object A05_HOFsAndCurriesExercise extends App{
     override def ++[B](list1: VenkatList[B]): VenkatList[B] = list1
   }
 
-  class VenkatListImpl[+A](value: A, tailList: VenkatList[A]) extends VenkatList[A] {
+  case class VenkatListImpl[+A](value: A, tailList: VenkatList[A]) extends VenkatList[A] {
     override def head: A = value
 
     override def tail: VenkatList[A] = tailList
